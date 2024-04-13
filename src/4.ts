@@ -15,11 +15,10 @@ class Person {
 }
 
 abstract class House {
-  door = false;
-  key: Key;
-  tenants: Person[] = [];
+  protected door = false;
+  protected tenants: Person[] = [];
 
-  constructor(key: Key) {};
+  constructor(protected key: Key) {};
   
   comeIn(person: Person): void { 
     if (this.door === true) {
@@ -37,7 +36,7 @@ abstract class House {
 
 class MyHouse extends House{
   openDoor(key: Key): void{
-    if (this.key.getSignature === key.getSignature) {
+    if (this.key.getSignature() === key.getSignature()) {
       this.door = true;
       console.log('Door opened');
     }      
